@@ -13,15 +13,14 @@ class Transform:
         
         for carrinho in jsonCarrinho:
             idUsuario = carrinho['userId']
-            DataCarrinho = datetime.strptime(carrinho['date'],  "%Y-%m-%dT%H:%M:%S.%fZ")
+            dataCarrinho = datetime.strptime(carrinho['date'],  "%Y-%m-%dT%H:%M:%S.%fZ")
 
-            if not dadosUsuario[idUsuario]['DataUltimaCarrinho'] or DataCarrinho > dadosUsuario[idUsuario]['DataUltimaCarrinho']:
-                dadosUsuario[idUsuario]['DataUltimaCarrinho'] = DataCarrinho
+            if not dadosUsuario[idUsuario]['DataUltimaCarrinho'] or dataCarrinho > dadosUsuario[idUsuario]['DataUltimaCarrinho']:
+                dadosUsuario[idUsuario]['DataUltimaCarrinho'] = dataCarrinho
 
             for produto in carrinho['products']:
                 categoria = categoriaProduto[produto['productId']]
                 dadosUsuario[idUsuario]['MaiorCategoria'][categoria] += produto['quantity']
-
 
         final = []
         
